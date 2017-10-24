@@ -7,14 +7,23 @@
 
 The client, or *Rotonde Core*, is what contributors need to make improvements on the inner systems of the application. This separation allows for a simpler onboarding and updating flow, where the latest client revision will be seeded automatically (read-only), while the [portal](https://github.com/Rotonde/rotonde-portal) source is all that any simple user needs to maintain.
 
+# WARNING: This is a fork!
+
+I made this fork to improve the new-user experience and potentially the developer experience as well. Notable changes:
+
+1) Using Vue.js instead of handcrafting HTML via vanilla JS
+2) Auto-detecting when a user just forked the site and generating all needed assets
+3) Using a box model for CSS
+4) Reducing the functionality of the operator box in favor of in-place editing
+
 ## Setup
 
 ### For a new user
 
-- Open @neauoire's portal in Beaker
-    - dat://2f21e3c122ef0f2555d3a99497710cd875c7b0383f998a2d37c02c042d598485/
-- Select "Fork this site" and open it in your Library.
-- Select the input field and press `ctrl shift del/backspace`.
+- Open @fugi's portal in Beaker
+    - dat://65499eed49c2cd528461067ff1d231f062fbcc0e72dd73c6541cef03fd12441a/
+- Select "Fork this site", name it your desired username and make the description your bio
+- Open your library and click share to get the hash of your feed
 - Share your user site hash with people, and paste theirs to follow them.
 - **EXTRA** If you already have an instance of the previous version of Rotonde, copy/paste your portal.json and move it into your site root.
 - Enjoy!
