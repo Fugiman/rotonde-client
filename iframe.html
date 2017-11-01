@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<body>
+  <script>
+let data = {}
+Object.keys(localStorage).forEach(key => {
+  data[key] = JSON.parse(localStorage.getItem(key))
+})
+window.parent.postMessage(JSON.stringify(data), '*')
+
+window.onmessage = function(e) {
+  let payload = JSON.parse(e.data)
+  localStorage.setItem(payload.key, JSON.stringify(payload.value))
+}
+</script>
+</body>
+</html>

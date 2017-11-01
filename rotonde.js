@@ -4,7 +4,7 @@ function Rotonde() {
 }
 
 let client_url = document.currentScript.src.slice(0, -10) // cut off '/rotonde.js'
-window.addEventListener('load', function() {
+;(() => {
   let install_style = function(name, is_user_side) {
     var href = 'links/' + name + '.css'
     if (!is_user_side) href = client_url + href
@@ -15,31 +15,29 @@ window.addEventListener('load', function() {
     document.getElementsByTagName('head')[0].appendChild(s)
   }
 
-  let install_script = function(name, vendor) {
+  let install_script = function(name) {
     var s = document.createElement('script')
     s.type = 'text/javascript'
-    s.src = client_url + (vendor ? 'vendor/' : 'scripts/') + name + '.js'
-    if (vendor) {
-      document.getElementsByTagName('head')[0].appendChild(s)
-    } else {
-      document.body.appendChild(s)
-    }
+    s.defer = true
+    s.async = false
+    s.src = client_url + name + '.js'
+    document.getElementsByTagName('head')[0].appendChild(s)
   }
 
   let requirements = {
     style: ['reset', 'fonts', 'main'],
-    script: ['operator', 'portal', 'feed', 'main'],
+    script: ['ALL_FEED', 'store', 'account_selector', 'operator', 'portal', 'feed', 'entry', 'main'],
     vendor: ['vue', 'vuex'],
   }
 
   requirements.vendor.forEach(name => {
-    install_script(name, true)
+    install_script('vendor/' + name)
   })
   requirements.script.forEach(name => {
-    install_script(name)
+    install_script('scripts/' + name)
   })
   requirements.style.forEach(name => {
     install_style(name)
   })
   install_style('custom', true)
-})
+})()
